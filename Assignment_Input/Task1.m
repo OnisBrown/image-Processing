@@ -14,4 +14,8 @@ figure;
 imshow(Igray);
 title('Step-2: Conversion of input image to greyscale');
 
-% and following steps
+% interpolation
+newSize = [1668, 1836];
+cSize = size(Igray);
+ratioW = newSize(1)/cSize(1);
+ratioH = newSize(2)/cSize(2);
