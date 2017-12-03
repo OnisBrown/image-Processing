@@ -3,6 +3,7 @@
 clear; close all; clc;
 
 % Step-1: Load input image
+axes;
 I = imread('Zebra.jpg');
 figure;
 imshow(I);
@@ -23,7 +24,7 @@ newImage = zeros(1668,1836);
 IgrayNear = zeros(1668,1836);
 IgrayBi = zeros(1668,1836);
 
-%nearest neighbour
+% nearest neighbour
 for i = 1:newSize(2)
 	for j = 1:newSize(1)
 		mR = i/ratioH;
@@ -32,8 +33,7 @@ for i = 1:newSize(2)
 	end
 end	
 			
-%bilinear 
-
+% bilinear 
 for i = 1:newSize(2)
 	for j = 1:newSize(1)
 		temp1 = 0;
@@ -45,6 +45,6 @@ for i = 1:newSize(2)
 		temp2 = (Igray(mC,mR)+Igray(mC+1,mR))/2; % interpolation along y axis
 		temp3 = (temp1 + temp2)/2
 		IgrayBi(i,j) = temp3/2;
-		%new pixel is given by 
+		% new pixel is given by 
 	end
 end	
