@@ -19,3 +19,14 @@ newSize = [1668, 1836];
 cSize = size(Igray);
 ratioW = newSize(1)/cSize(1);
 ratioH = newSize(2)/cSize(2);
+newImage = zeros(1668,1836);
+
+%nearest neighbour
+for i = 1:ratioH
+	for j = 1:ratioW
+		mR = i/ratioH;
+		mC = j/ratioW;
+		newImage(i,j) = Igray(mR,mC);
+	end
+end	
+			
