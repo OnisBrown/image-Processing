@@ -2,7 +2,6 @@
 % Task-3
 clear; close all; clc;
 
-axes;
 I = imread('Noisy.png');
 figure;
 imshow(I);
@@ -12,12 +11,12 @@ Igray = rgb2gray(I);
 IgrayPad = padarray(Igray,[2 2]);
 IgrayMean = IgrayPad;
 IgrayMedian = IgrayPad;
-ISize = size(padarray(Igray , [2 2]); % rray for soring size of padded image
+ISize = size(padarray(Igray , [2 2])); % rray for soring size of padded image
 %padding the arrays that will hold the filtered images
 mask = zeros(5,5); % creating mask for the images
-for i = 1:5:Isize(2)-5
+for i = 1:ISize(2)-5
 
-	for j= 1:5:Isize(1)-5
+	for j= 1:ISize(1)-5
 	
 		for mi = 1:5
 		
@@ -27,14 +26,15 @@ for i = 1:5:Isize(2)-5
 			end
 		end
 		
-		median = m(25);
-		
+		Imedian = mask(13);
+		Imean = 0;
 		for m = 1:25
-			mean = mean + mask(m);
+			Imean = Imean + mask(m);
 		end
-		mean =  mean/25;
-		IgrayMean(j-2,i-2) = mean;
-		IgrayMedian(j-2,i-2) = median;
+		Imean =  Imean/25;
+		IgrayMean(j+2,i+2) = Imean;
+        watch = IgrayMean(j,i);
+		IgrayMedian(j+2,i+2) = Imedian;
 	end
 end
 

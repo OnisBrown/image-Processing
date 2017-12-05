@@ -3,7 +3,6 @@
 clear; close all; clc;
 
 % Step-1: Load input image
-axes;
 I = imread('Zebra.jpg');
 figure;
 imshow(I);
