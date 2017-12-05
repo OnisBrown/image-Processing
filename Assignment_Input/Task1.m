@@ -32,7 +32,10 @@ for i = 1:newSize(2)
 		IgrayNear(i,j) = Igray(mC,mR);
 	end
 end	
-			
+
+figure;
+imshow(IgrayNear);
+title('nearest nieghbor interpolation');			
 % bilinear 
 for i = 1:newSize(2)
 	for j = 1:newSize(1)
@@ -41,10 +44,13 @@ for i = 1:newSize(2)
 		temp3 = 0;
 		mR = i/ratioH;
 		mC = j/ratioW;
-		temp1 = (Igray(mC,mR)+Igray(mC,mR+1))/2; % interpolation along x axis
-		temp2 = (Igray(mC,mR)+Igray(mC+1,mR))/2; % interpolation along y axis
+		temp1 = (Igray(mC,mR)+Igray(mC,mR+1))/2; % interpolation along y axis
+		temp2 = (Igray(mC,mR)+Igray(mC+1,mR))/2; % interpolation along x axis
 		temp3 = (temp1 + temp2)/2
 		IgrayBi(i,j) = temp3/2;
 		% new pixel is given by 
 	end
 end	
+figure;
+imshow(IgrayBi);
+title('Bilinear interpolation');
