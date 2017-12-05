@@ -15,22 +15,22 @@ ISize = size(padarray(Igray , [2 2])); % rray for soring size of padded image
 %padding the arrays that will hold the filtered images
 mask = zeros(5,5); % creating mask for the images
 for i = 1:ISize(2)-5
-
 	for j= 1:ISize(1)-5
-	
 		for mi = 1:5
-		
 			for mj = 1:5
 				mask(mj,mi) = IgrayPad((j+mj-1),(i+mi-1));
 				% maps points in padded image to mask
 			end
         end
+        
 		Imean = 0;
         Isort = [];
+        
 		for m = 1:25
 			Imean = Imean + mask(m);
             Isort = [Isort; mask(m)];
         end
+        
         Isort = sort(Isort);
         Imedian = median(Isort);
 		Imean =  Imean/25;
