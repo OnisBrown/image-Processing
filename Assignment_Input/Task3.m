@@ -24,13 +24,15 @@ for i = 1:ISize(2)-5
 				mask(mj,mi) = IgrayPad((j+mj-1),(i+mi-1));
 				% maps points in padded image to mask
 			end
-		end
-		
-		Imedian = mask(13);
+        end
 		Imean = 0;
+        Isort = [];
 		for m = 1:25
 			Imean = Imean + mask(m);
-		end
+            Isort = [Isort; mask(m)];
+        end
+        Isort = sort(Isort);
+        Imedian = median(Isort);
 		Imean =  Imean/25;
 		IgrayMean(j+2,i+2) = Imean;
         watch = IgrayMean(j,i);
