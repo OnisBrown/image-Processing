@@ -47,7 +47,7 @@ for i = 1:newSize(2)
 		temp1 = (Igray(mC,mR)+Igray(mC,mR+1))/2; % interpolation along y axis
 		temp2 = (Igray(mC,mR)+Igray(mC+1,mR))/2; % interpolation along x axis
 		temp3 = (temp1 + temp2)/2
-		IgrayBi(i,j) = temp3/2;
+		IgrayBi(i,j) = temp3;
 		% new pixel is given by 
 	end
 end	
