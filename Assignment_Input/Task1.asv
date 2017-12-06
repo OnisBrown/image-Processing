@@ -54,8 +54,6 @@ for i = 1:newSize(2)
 		mC = j/ratioW;
         mCH = ceil(mC);
         mCL = floor(mC);
-        
-        
         if mCL < 1
             mCL = 1;
         end
@@ -67,17 +65,13 @@ for i = 1:newSize(2)
         if mCL == mCH
            mCH = mCH + 1; 
         end
-        
         if mC == cSize(1)
-            IgrayBi(j,i) = (Igray(mCL,mRL)+Igray(mC,mRL))/2;
             break
         end
         
         if mR == cSize(2)
-            IgrayBi(j,i) = (Igray(mCL,mRH)+Igray(mCH,mRH))/2;
             break
         end
-        
 
         frac1 = (mCH-mC)/(mCH-mCL);
         frac2 = (mC-mCL)/(mCH-mCL);
