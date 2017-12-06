@@ -8,12 +8,13 @@ imshow(I);
 title('Noisy image');
 
 Igray = rgb2gray(I);
-IgrayPad = padarray(Igray,[2 2]);
+IgrayPad = padarray(Igray,[2 2]); %pads image with gray border
 IgrayMean = IgrayPad;
 IgrayMedian = IgrayPad;
 ISize = size(padarray(Igray , [2 2])); % rray for soring size of padded image
 %padding the arrays that will hold the filtered images
 mask = zeros(5,5); % creating mask for the images
+
 for i = 1:ISize(2)-5
 	for j= 1:ISize(1)-5
 		for mi = 1:5
@@ -24,13 +25,13 @@ for i = 1:ISize(2)-5
         end
         
 		Imean = 0;
-        Isort = [];
+        
         
 		for m = 1:25
 			Imean = Imean + mask(m);
-            Isort = [Isort; mask(m)];
         end
         
+        Isort = mask(:);
         Isort = sort(Isort);
         Imedian = median(Isort);
 		Imean =  Imean/25;

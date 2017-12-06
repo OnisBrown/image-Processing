@@ -8,15 +8,15 @@ title('original image');
 IPW = I;
 ISize = size(IPW);
 x = 0;
-% defines piecewise transformation highlighting range 80-100 and maintaining every other value.
+
 for i = 1:size(IPW(:))
         x = IPW(i);
         if (80<x)&&(x<100) % Values between the ranges of 80 and 100 are highlighted
             x = 220;
             IPW(i) = x;
         end
-end	
-
+end
+        
 figure;
 imshow(IPW);
 title('Piecewise transformed image');
