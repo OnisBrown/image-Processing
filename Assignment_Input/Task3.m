@@ -5,6 +5,7 @@ clear; close all; clc;
 I = imread('Noisy.png');
 figure;
 imshow(I);
+axis on;
 title('Noisy image');
 
 Igray = rgb2gray(I);
@@ -43,8 +44,10 @@ end
 
 figure;
 imshow(IgrayMean);
+axis on;
 title('Processed image: mean filter');
 
 figure;
 imshow(IgrayMedian);
+axis on;
 title('Processed image: median filter');

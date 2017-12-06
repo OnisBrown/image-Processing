@@ -4,6 +4,7 @@ clear; close all; clc;
 I = imread('SC.png');
 figure;
 imshow(I);
+axis on;
 title('original image');
 IPW = I;
 ISize = size(IPW);
@@ -19,6 +20,7 @@ end
         
 figure;
 imshow(IPW);
+axis on;
 title('Piecewise transformed image');
 
 %Graphical representation of transformation on image

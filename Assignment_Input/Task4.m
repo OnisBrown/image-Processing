@@ -11,19 +11,30 @@ figure;
 imshow(Igray);
 title('Starfish image greyscaled');
 
-IFiltered = medfilt2(Igray, [3 3]);
+IFiltered = medfilt2(Igray);
 figure;
 imshow(IFiltered);
 title('Starfish image with reduced noise');
 
+ISize = imresize(IFiltered, 2, 'nearest');
 figure;
-imshow(IPW);
+imshow(ISize);
+title('Starfish image resized');
+
+Ibi = imcomplement(ISize);
+Ibi = imbinarize(Ibi);
+figure;
+imshow(Ibi);
 title('Starfish image Shapes defined');
 
-IPW = IFiltered;
-shapes = bwconncomp(IPW,4);
-imtophat(IPW,Point);
+Line = bwboundaries(Ibi);
+ILine = Ibi;
+for i = 1:size(Line)
+    j = Line{i};
+    plot(j(:,2),j(:,1),'w','LineWidth', 2);
+end
 figure;
-imshow(IPW);
-title('Starfish image Shapes defined');
+imshow(ILine);
+title('Starfish image with all shapes outlined');
+
 

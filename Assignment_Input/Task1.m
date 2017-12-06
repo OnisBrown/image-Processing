@@ -13,7 +13,7 @@ Igray = uint16(rgb2gray(I));
 figure;
 % 16 bit and processed images don't display correctly using imshow
 imshow(uint8(Igray)); 
-
+axis on;
 title('Step-2: Conversion of input image to greyscale');
 
 % interpolation
@@ -43,6 +43,7 @@ end
 
 figure;
 imshow(uint8(IgrayNear));
+axis on;
 title('nearest nieghbor interpolation');			
 % bilinear 
 
@@ -101,4 +102,5 @@ for i = 1:newSize(2)
 end	
 figure;
 imshow(uint8(IgrayBi));
+axis on;
 title('Bilinear interpolation');
