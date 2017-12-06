@@ -23,4 +23,4 @@ title('Piecewise transformed image');
 
 syms g;
 y = piecewise((80<g)&(g<100), 220, g>100, g, g<80, g);
-
+fplot(y, [0 255]);
