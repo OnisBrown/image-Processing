@@ -12,7 +12,7 @@ Igray = rgb2gray(I);
 IgrayPad = padarray(Igray,[2 2]); %pads image with gray border
 IgrayMean = IgrayPad;
 IgrayMedian = IgrayPad;
-ISize = size(padarray(Igray , [2 2])); % rray for soring size of padded image
+ISize = size(padarray(Igray , [2 2])); % array for soring size of padded image
 %padding the arrays that will hold the filtered images
 mask = zeros(5,5); % creating mask for the images
 

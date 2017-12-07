@@ -12,7 +12,7 @@ x = 0;
 
 for i = 1:size(IPW(:))
         x = IPW(i);
-        if (80<x)&&(x<100) % Values between the ranges of 80 and 100 are highlighted
+        if (80<=x)&&(x<=100) % Values between the ranges of 80 and 100 are highlighted
             x = 220;
             IPW(i) = x;
         end
