@@ -6,31 +6,36 @@ figure;
 imshow(I);
 title('Starfish image');
 
+% convert image to greyscale
 Igray = rgb2gray(I);
 figure;
 imshow(Igray);
 title('Starfish image greyscaled');
 
+%filter out noise from image
 IFiltered = medfilt2(Igray);
 figure;
 imshow(IFiltered);
 title('Starfish image with reduced noise');
 
+% standardising common values to make binarize function friendlier
 IPW = IFiltered;
 Imean = mean(IPW(:));
 for i = 1:size(IPW(:))
         x = IPW(i);
+        % Values within 5% of the  mean greyscale value are set to black
         if ((Imean*0.95)<x)&&(x<(Imean*1.05)) 
             x = 0;
-            IPW(i) = x; % Values within 10% of the  mean greyscale value are set to black
+            IPW(i) = x; 
         end
 end
-
+% values close to white are turned black
 for i = 1:numel(IPW)
     if IPW(i) > 220
         IPW(i) = 0;
     end
 end
+
 figure;
 imshow(IPW);
 title('Starfish image piecewise transformed');
@@ -72,25 +77,27 @@ Shape = regionprops(ILabeled, 'basic');
 ShapePixels = [ILabeled.PixelIdxList];
 ShapeArea = [Shape.Area];
 
+% initialise empty vectors for storing roundness and locations of values to
+% keep
 roundness = [];
-keepers = [];
+keepers = []; 
+% finds the roundness of every object 
 for i = 1:size(Shape)
     ShapePerim = sum(sum(bwperim(ShapePixels{i})));
-    roundness = [roundness, 4*pi*ShapeArea(i)/ShapePerim^2]; % finds the roundness of every object
+    roundness = [roundness, 4*pi*ShapeArea(i)/ShapePerim^2];
 end
-
+% finds objects that have roundness within a small, low range 
 for i = 1:numel(roundness)
     if  roundness(i) < 0.016 && roundness(i) > 0.012 
-        keepers = [keepers,i]; % generate
+        keepers = [keepers,i]; % stores locations of qualifying objects
     end
 end
 
 
-
+% qualifying objects are singled out in the final image 
 IFinal = ismember(ILMap,keepers);
-
-IFinal = imclose(IFinal, strel('disk',3)); % neaten up the starfish slightly
-
+% neaten up the starfish objects slightly
+IFinal = imclose(IFinal, strel('disk',4));
 figure;
 imshow(IFinal);
 title('Starfish image with starfish isolated');

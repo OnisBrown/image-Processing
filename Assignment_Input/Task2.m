@@ -1,6 +1,7 @@
 % MATLAB script for Assessment Item-1
 % Task-2
 clear; close all; clc;
+%read and display original image
 I = imread('SC.png');
 figure;
 imshow(I);
@@ -10,6 +11,7 @@ IPW = I;
 ISize = size(IPW);
 x = 0;
 
+%piecewise transformation in the form of a for loop
 for i = 1:size(IPW(:))
         x = IPW(i);
         if (80<=x)&&(x<=100) % Values between the ranges of 80 and 100 are highlighted

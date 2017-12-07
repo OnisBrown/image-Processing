@@ -25,17 +25,13 @@ for i = 1:ISize(2)-5
 			end
         end
         
-		Imean = 0;
-        
-        
-		for m = 1:25
-			Imean = Imean + mask(m);
-        end
-        
+        % mean and median are calculated using sort mean and median
+        % functions
         Isort = mask(:);
         Isort = sort(Isort);
         Imedian = median(Isort);
-		Imean =  Imean/25;
+		Imean =  mean(mask(:));
+        % map mean and median values to respective images
 		IgrayMean(j+2,i+2) = Imean;
         watch = IgrayMean(j,i);
 		IgrayMedian(j+2,i+2) = Imedian;
