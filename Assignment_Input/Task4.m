@@ -17,8 +17,8 @@ imshow(IFiltered);
 title('Starfish image with reduced noise');
 
 IPW = IFiltered;
-Imean = mean(IFiltered(:));
-for i = 1:size(IFiltered(:))
+Imean = mean(IPW(:));
+for i = 1:size(IPW(:))
         x = IPW(i);
         if ((Imean*0.95)<x)&&(x<(Imean*1.05)) 
             x = 0;
@@ -31,7 +31,6 @@ for i = 1:numel(IPW)
         IPW(i) = 0;
     end
 end
-imclose(IPW,strel('disk',2));
 figure;
 imshow(IPW);
 title('Starfish image piecewise transformed');
@@ -56,7 +55,7 @@ ShapeAMean = mean(ShapeArea); % find the mean area of all objects
 
 
 % reduce number of objects in image based on the mean area of all objects
-Ibi = bwareaopen(Ibi,round(ShapeAMean));
+Ibi = bwareaopen(Ibi,round(ShapeAMean*3));
 
 % update list of objects and their attributes
 ShapeArea = [Shape.Area];
@@ -81,20 +80,16 @@ for i = 1:size(Shape)
 end
 
 for i = 1:numel(roundness)
-    if  roundness(i) > mean(roundness)*1.1 || roundness(i) < mean(roundness)*0.9
-        keepers = [keepers,i];
+    if  roundness(i) < 0.016 && roundness(i) > 0.012 
+        keepers = [keepers,i]; % generate
     end
 end
 
-% keepers2 = [];
-% for i = 1:numel(keepers)
-%     if  ShapeArea(keepers(i)) > mean(ShapeArea) 
-%         keepers2 = [keepers2, keepers(i)];
-% 
-%     end
-% end
+
 
 IFinal = ismember(ILMap,keepers);
+
+IFinal = imclose(IFinal, strel('disk',3)); % neaten up the starfish slightly
 
 figure;
 imshow(IFinal);
