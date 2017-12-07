@@ -18,7 +18,7 @@ figure;
 imshow(IFiltered);
 title('Starfish image with reduced noise');
 
-% standardising common values to make binarize function friendlier
+%standardising common values to make binarize function friendlier
 IPW = IFiltered;
 Imean = mean(IPW(:));
 for i = 1:size(IPW(:))
@@ -88,7 +88,7 @@ for i = 1:size(Shape)
 end
 % finds objects that have roundness within a small, low range 
 for i = 1:numel(roundness)
-    if  roundness(i) < 0.016 && roundness(i) > 0.012 
+    if  roundness(i) < 0.016 && roundness(i) > 0.01 
         keepers = [keepers,i]; % stores locations of qualifying objects
     end
 end
